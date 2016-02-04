@@ -36,9 +36,7 @@ if ($_POST) {
          <h2 class="form-signin-heading">Enter Repair Info</h2>
          <hr />
 
-         <div id="error">
-             <!-- error will be showen here ! -->
-         </div>
+        
 
          <div class="form-group">
              <input type="text" class="form-control" placeholder="Phone Brand" name="repairbrand" id="repairbrand" />
