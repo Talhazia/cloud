@@ -4,6 +4,7 @@ require_once 'scripts/database.php';
 
 $db = new Database();
 $db->connectToDB();
+$message = "";
 
 if ($_POST) {
     $repairbrand = $_POST['repairbrand'];
@@ -13,7 +14,8 @@ if ($_POST) {
     $cusname = $_POST['cusname'];
     $cusphone = $_POST['cusphone'];
     $cusemail = $_POST['cusemail'];
-    $db->createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail);
+    $repairloc = $_POST['repairloc'];
+    $message = $db->createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail, $repairloc);
 }
  ?>
 
@@ -36,7 +38,10 @@ if ($_POST) {
          <h2 class="form-signin-heading">Enter Repair Info</h2>
          <hr />
 
-        
+         <div id="error">
+             <!-- error will be showen here ! -->
+             <?php echo isset($message) ? $message : null; ?>
+         </div>
 
          <div class="form-group">
              <input type="text" class="form-control" placeholder="Phone Brand" name="repairbrand" id="repairbrand" />
@@ -51,7 +56,7 @@ if ($_POST) {
          </div>
 
          <div class="form-group">
-             <input type="number" class="form-control" placeholder="IMEI number" name="repairtech" id="repairtech" />
+             <input type="number" class="form-control" placeholder="IMEI number" name="repairIMEI" id="repairtech" />
          </div>
 
          <div class="form-group">
@@ -63,7 +68,12 @@ if ($_POST) {
          </div>
 
          <div class="form-group">
-             <select name="cars">
+         <input type="email" class="form-control" placeholder="Customer Email Address" name="cusemail" id="cusemail" />
+         <span id="check-e"></span>
+         </div>
+
+         <div class="form-group">
+             <select name="repairloc">
                  <option value="">Locations</option>
                  <option value="pickering">Pickering</option>
                  <option value="whitby">Whitby</option>

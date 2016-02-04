@@ -94,7 +94,7 @@ class Database
 
 
 
-      public function createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail)
+      public function createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail, $repairloc)
       {
 
 
@@ -102,35 +102,36 @@ class Database
 
           try{
 
-            $stmt = $this->dbh->prepare("SELECT * FROM customers WHERE cusemail=:email");
-            $stmt->execute(array(":email"=>$cusemail));
+            $stmt = $this->dbh->prepare("SELECT * FROM repairform WHERE repairIMEI=:repairIMEI");
+            $stmt->execute(array(":repairIMEI"=>$repairIMEI));
             $count = $stmt->rowCount();
 
             if($count==0){
-              $stmt = $this->dbh->prepare("INSERT INTO repairform(repairbrand, repairdate, repairmodel, repairtech, repairIMEI) VALUES(:repairbrand, :repairdate, :repairmodel, :repairtech, :repairIMEI)");
+              $stmt = $this->dbh->prepare("INSERT INTO repairform(repairbrand, repairdate, repairmodel, repairtech, repairIMEI, repairloc) VALUES(:repairbrand, :repairdate, :repairmodel, :repairtech, :repairIMEI, :repairloc)");
               $stmt1 = $this->dbh->prepare("INSERT INTO customers(cusname, cusphone, cusemail) VALUES(:cusname, :cusphone, :cusemail)");
               $stmt->bindParam(":repairbrand", $repairbrand);
-              $stmt->bindParam(":username", $);
-              $stmt->bindParam(":password", $password);
-              $stmt->bindParam(":email", $useremail);
-              $stmt->bindParam(":jdate", $joiningdate);
+              $stmt->bindParam(":repairmodel", $repairmodel);
+              $stmt->bindParam(":repairtech", $repairtech);
+              $stmt->bindParam(":repairIMEI", $repairIMEI);
+              $stmt->bindParam(":repairdate", $repairdate);
               $stmt1->bindParam(":cusname", $cusname);
               $stmt1->bindParam(":cusphone", $cusphone);
               $stmt1->bindParam(":cusemail", $cusemail);
+              $stmt->bindParam(":repairloc", $repairloc);
 
-              if($stmt->execute())
+              if($stmt1->execute() && $stmt->execute())
               {
-                echo "Repair submitted";
+                return "Repair submitted";
               }
               else
               {
-                echo "Error: Could not submit";
+                return "Error: Could not submit";
               }
 
                 }
 
                 else {
-                  echo "1";
+                  return "Repair IMEI already exists";
                 }
         }
             catch(PDOException $e) {
