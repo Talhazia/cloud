@@ -5,7 +5,7 @@ body{
 	background:#f1f9f9;
 }
 
-.form-signin, .form-repair{
+.form-signin, .form-repair, .form-login{
     max-width: 500px;
     padding: 19px 29px 29px;
     margin: 0 auto;
@@ -25,7 +25,7 @@ body{
 	font-weight:lighter;
 }
 
-.form-signin .form-signin-heading, .form-repair{
+.form-signin .form-signin-heading, .form-repair, .form-login{
     color:#00A2D1;
 }
 .form-signin, .form-repair input[type="text"],
@@ -37,7 +37,7 @@ body{
     padding: 7px 9px;
 }
 
-.signin-form
+.signin-form, .form-login, .form-repair
 {
 	//border:solid red 1px;
 	margin-top:80px;

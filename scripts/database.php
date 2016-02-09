@@ -28,11 +28,6 @@ class Database
         return $this->isConnected;
     }
 
-    public function getdb() {
-      if ($this->$db instanceof PDO)
-      return $this->$db;
-    }
-
     public function checkLogin($username, $password) {
        if ($this->isConnected)
        {
@@ -140,6 +135,30 @@ class Database
 
         }
 
+        public function createSession($username, $password){
+          session_start();
+
+          if (count($_POST) > 0) {
+
+           $stmt = $this->dbh->prepare("SELECT * FROM users WHERE (`username` = :username) and (`password` = :password)");
+
+           $result = $stmt->execute(array(':username'=>$_POST['username'],':password'=>$_POST['password']));
+           $rows = $stmt->rowCount();
+
+           if ( $rows > 0) {
+
+           $_SESSION['username'] = $_POST['username'];
+
+
+           header('Location: repairs.php');
+           }
+           else {
+
+        echo "Invalid username or password, please try again!";
+          header('Location: login.php');
+           }
+          }
+        }
 
 
 
