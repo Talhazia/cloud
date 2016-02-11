@@ -1,11 +1,13 @@
 <?php
-
 require_once 'scripts/database.php';
 
 $db = new Database();
 $db->connectToDB();
 $message = "";
 
+if($db->checkLoginStatus() == false){
+    header('Location: login.php');
+}
 if ($_POST) {
     $repairbrand = $_POST['repairbrand'];
     $repairmodel = $_POST['repairmodel'];
@@ -89,8 +91,16 @@ if ($_POST) {
              </button>
          </div>
 
+              <input type="button" value="View All Repairs" class="btn btn-default" id="btn-submit1" onClick="document.location.href='displayform.php'" />
+              <hr>
+              <input type="button" value="Logout" class="btn btn-default" id="btn-submit1" onClick="document.location.href='logout.php'" />
+
      </form>
      </div>
+
+
+
+
      <script src="js/bootstrap.min.js"></script>
  </body>
 

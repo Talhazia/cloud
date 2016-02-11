@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Database
 {
     protected $host = "localhost";
@@ -8,6 +8,16 @@ class Database
     protected $db = "cloudcomp";
     protected $isConnected = false;
     protected $dbh;
+    protected $isLoggedIn = false;
+
+    public function checkLoginStatus() {
+        if (isset($_SESSION['username'])) {
+          $this->isLoggedIn = true;
+        } else {
+          $this->isLoggedIn = false;
+        }
+        return $this->isLoggedIn;
+    }
 
     public function connectToDB()
     {
@@ -39,6 +49,7 @@ class Database
 
           if($statement->rowCount() > 0)
           {
+
               return true;
           } else {
             return false;
@@ -61,7 +72,7 @@ class Database
           if($count==0){
             $stmt = $this->dbh->prepare("INSERT INTO users(username,password,useremail,joiningdate) VALUES(:username, :password, :email, :jdate)");
             $stmt->bindParam(":username", $username);
-            $stmt->bindParam(":password", $password);
+            $stmt->bindParam(":password", md5($password));
             $stmt->bindParam(":email", $useremail);
             $stmt->bindParam(":jdate", $joiningdate);
 
@@ -136,13 +147,12 @@ class Database
         }
 
         public function createSession($username, $password){
-          session_start();
 
           if (count($_POST) > 0) {
 
            $stmt = $this->dbh->prepare("SELECT * FROM users WHERE (`username` = :username) and (`password` = :password)");
 
-           $result = $stmt->execute(array(':username'=>$_POST['username'],':password'=>$_POST['password']));
+           $result = $stmt->execute(array(':username'=>$_POST['username'],':password'=>md5($_POST['password'])));
            $rows = $stmt->rowCount();
 
            if ( $rows > 0) {

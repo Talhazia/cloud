@@ -1,9 +1,14 @@
 <?php
-
+session_start();
 require_once('scripts/database.php');
 
 $db = new Database();
 $db->connectToDB();
+
+
+if($db->checkLoginStatus() == true){
+    header('Location: repairs.php');
+}
 
 if($_POST)
 {
