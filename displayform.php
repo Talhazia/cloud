@@ -12,7 +12,7 @@ try {
   $conn->exec();
 
 
-  $sql = "SELECT * FROM repairform";
+  $sql = "SELECT * FROM repairform, customers";
   $result = $conn->query($sql);
 
 
@@ -27,6 +27,9 @@ try {
     <th>Repair Date</th>
     <th>Technician</th>
     <th>IMEI #</th>
+    <th>Customer Name</th>
+    <th>Customer Phone #</th>
+    <th>Customer email</th>
     </tr>';
 
 
@@ -38,6 +41,9 @@ try {
       <td>' .$row['repairdate']. '</td>
       <td>' .$row['repairtech']. '</td>
       <td>' .$row['repairIMEI']. '</td>
+        <td>' .$row['cusname']. '</td>
+          <td>' .$row['cusphone']. '</td>
+            <td>' .$row['cusemail']. '</td>
 
       </tr>';
     }
