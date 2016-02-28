@@ -9,7 +9,7 @@ use Mailgun\Mailgun;
 
 # First, instantiate the SDK with your API credentials and define your domain.
 $mg = new Mailgun("key-3f57a39ea3bef42f294c5e5590e6e5d4");
-$domain = "70.26.118.124";
+$domain = "http://ec2-52-36-33-133.us-west-2.compute.amazonaws.com/testmail.php";
 
 # Now, compose and send your message.
 $mg->sendMessage($domain, array('from'    => 'talha.zia@uoit.net',
