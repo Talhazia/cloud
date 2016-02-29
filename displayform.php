@@ -12,9 +12,8 @@ try {
   $conn->exec();
 
 
-  $sql = "SELECT * FROM repairform, customers";
+  $sql = "SELECT * FROM customers, repairform WHERE customers.cusid = repairform.customerID";
   $result = $conn->query($sql);
-
 
   if($result !== false) {
 
