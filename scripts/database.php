@@ -197,6 +197,25 @@ class Database
 
     public function uploadImage() {
 
+      if(isset($_POST['btn_upload']))
+{
+	$filetmp = $_FILES["file_img"]["tmp_name"];
+	$filename = $_FILES["file_img"]["name"];
+	$filetype = $_FILES["file_img"]["type"];
+	$filepath = "images/".$filename;
+
+
+    move_uploaded_file($filetmp,$filepath);
+    $stmt = $this->dbh->prepare('INSERT INTO image(imageName,imagePath,imageType) VALUES(:imageName, :imagePath, :imageType)');
+    $stmt->bindParam(':imageName', $filename);
+    $stmt->bindParam(':imagePath', $filepath);
+    $stmt->bindParam(':imageType', $filetype);
+    $result = $stmt->execute();
+    
+
+
+
+}
 
 
     }
