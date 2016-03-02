@@ -153,7 +153,7 @@ class Database
         if (count($_POST) > 0) {
             $stmt = $this->dbh->prepare('SELECT * FROM users WHERE (`username` = :username) and (`password` = :password)');
 
-            $result = $stmt->execute(array(':username' => $_POST['username'], ':password' => md5($_POST['password'])));
+            $result = $stmt->execute(array(':username' => $_POST['username'], ':password' => $_POST['password']));
             $rows = $stmt->rowCount();
 
             if ($rows > 0) {
