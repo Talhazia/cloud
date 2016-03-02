@@ -1,19 +1,14 @@
 {
-    "name": "root/project",
-    "authors": [
-        {
-            "name": "Talha Zia",
-            "email": "talhazia00@gmail.com"
-        }
-    ],
-    "require": {
-        "mailgun/mailgun-php": "~1.7.2",
-        }
-}
+	"name": "root/project",
+	"authors": [{
+		"name": "Talha Zia",
+		"email": "talhazia00@gmail.com"
+	}],
+	"require": {
+		"mailgun/mailgun-php": "~1.7.2",
+		"facebook/php-sdk-v4": "~5.0"
 
-{
-  "require" : {
-    "facebook/php-sdk-v4" : "~5.0"
-  }
-}
+	}
 
+
+}

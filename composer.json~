@@ -9,10 +9,11 @@
     "require": {
         "mailgun/mailgun-php": "~1.7.2",
         }
+}
 
 {
   "require" : {
     "facebook/php-sdk-v4" : "~5.0"
   }
 }
-}
+
