@@ -96,7 +96,7 @@ class Database
 
     public function createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail, $repairloc)
     {
-        $repairdate = date.timezone_open('Y-m-d H:i:s');
+        $repairdate = new DateTime(date('h:i:s'));
 
         try {
             $stmt = $this->dbh->prepare('SELECT * FROM repairform WHERE repairIMEI=:repairIMEI');
