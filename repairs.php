@@ -5,11 +5,10 @@ if(!isset($_SESSION))
         session_start();
     }
 require_once 'scripts/database.php';
-require_once 'fb-callback.php';
+
 
 $db = new Database();
 $db->connectToDB();
-$fb = new Facebook\Facebook();
 $message = '';
 
 if (($db->checkLoginStatus() == false)) {
@@ -101,19 +100,10 @@ if ($_POST) {
            </br>
             </div>
 
-         <div class="form-group">
-           <?php echo'Select Picture to upload with file:' ?>&nbsp;&nbsp;
 
-           <div class="form-group">
 
 
              <div class="form-group">
-                <form action="<?php $db->uploadImage(); ?>" method="post" enctype="multipart/form-data">
-                 <input type="file" name="file_img" class="btn btn-default"> </br>
-                 </form>
-
-
-
 
             <hr>
 
