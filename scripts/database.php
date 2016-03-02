@@ -112,6 +112,7 @@ class Database
                 $stmt->bindParam(':repairIMEI', $repairIMEI);
                 $stmt->bindParam(':repairdate', $repairdate);
                 $stmt->bindParam(':repairloc', $repairloc);
+                $stmt->bindParam(':customerID', $customerID);
                 $stmt1->bindParam(':cusname', $cusname);
                 $stmt1->bindParam(':cusphone', $cusphone);
                 $stmt1->bindParam(':cusemail', $cusemail);
