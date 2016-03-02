@@ -3,7 +3,6 @@
 require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 
-
 ini_set('display_errors', 1);  error_reporting(E_ALL);
 if(!isset($_SESSION))
     {
@@ -68,7 +67,7 @@ class Database
 
     public function createAccount($username, $password, $useremail)
     {
-        //$joiningdate = date('Y-m-d H:i:s');
+        $joiningdate = date('Y-m-d H:i:s');
 
         try {
             $stmt = $this->dbh->prepare('SELECT * FROM users WHERE useremail=:email');
@@ -80,7 +79,7 @@ class Database
                 $stmt->bindParam(':username', $username);
                 $stmt->bindParam(':password', $password);
                 $stmt->bindParam(':email', $useremail);
-              //  $stmt->bindParam(':jdate', $joiningdate);
+                $stmt->bindParam(':jdate', $joiningdate);
 
                 if ($stmt->execute()) {
                     echo 'registered';
@@ -97,7 +96,7 @@ class Database
 
     public function createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail, $repairloc)
     {
-        //$repairdate = date('Y-m-d H:i:s');
+        $repairdate = date('Y-m-d H:i:s');
 
         try {
             $stmt = $this->dbh->prepare('SELECT * FROM repairform WHERE repairIMEI=:repairIMEI');
@@ -105,13 +104,13 @@ class Database
             $count = $stmt->rowCount();
 
             if ($count == 0) {
-                $stmt = $this->dbh->prepare('INSERT INTO repairform(customerID, repairbrand, repairmodel, repairtech, repairIMEI, repairloc) VALUES(:customerID, :repairbrand, :repairmodel, :repairtech, :repairIMEI, :repairloc)');
+                $stmt = $this->dbh->prepare('INSERT INTO repairform(customerID, repairbrand, repairdate, repairmodel, repairtech, repairIMEI, repairloc) VALUES(:customerID, :repairbrand, :repairdate, :repairmodel, :repairtech, :repairIMEI, :repairloc)');
                 $stmt1 = $this->dbh->prepare('INSERT INTO customers(cusname, cusphone, cusemail) VALUES(:cusname, :cusphone, :cusemail)');
                 $stmt->bindParam(':repairbrand', $repairbrand);
                 $stmt->bindParam(':repairmodel', $repairmodel);
                 $stmt->bindParam(':repairtech', $repairtech);
                 $stmt->bindParam(':repairIMEI', $repairIMEI);
-              //  $stmt->bindParam(':repairdate', $repairdate);
+                $stmt->bindParam(':repairdate', $repairdate);
                 $stmt->bindParam(':repairloc', $repairloc);
                 $stmt1->bindParam(':cusname', $cusname);
                 $stmt1->bindParam(':cusphone', $cusphone);
@@ -126,7 +125,7 @@ class Database
                 return "Error: Could not submit";
               }*/
               if ($stmt1->execute()) {
-                  $stmt->bindParam(':customerID', $this->dbh->lastInsertId(), PDO::PARAM_STR);
+                  $stmt->bindParam(':customerID', $this->dbh->lastInsertId());
                   if ($stmt->execute()) {
                       $this->sendEmail();
                       $this->uploadImage();
