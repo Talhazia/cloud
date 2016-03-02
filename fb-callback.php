@@ -72,14 +72,7 @@ if (! $accessToken->isLongLived()) {
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
-function isfbLoggedIn(){
-if(isset($_SESSION['fb_access_token'])){
-  return true;
-}
-else{
-  return false;
-}
-}
+
 
 
 // User is logged in with a long-lived access token.
