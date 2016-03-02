@@ -67,7 +67,7 @@ class Database
 
     public function createAccount($username, $password, $useremail)
     {
-        $joiningdate = new DateTime(date('h:i:s'));
+        $joiningdate = date('Y-m-d H:i:s');
 
         try {
             $stmt = $this->dbh->prepare('SELECT * FROM users WHERE useremail=:email');
@@ -96,7 +96,7 @@ class Database
 
     public function createRepair($repairbrand, $repairmodel, $repairtech, $repairIMEI, $cusname, $cusphone, $cusemail, $repairloc)
     {
-        $repairdate = new DateTime(date('h:i:s'));
+        $repairdate = date('Y-m-d H:i:s');
 
         try {
             $stmt = $this->dbh->prepare('SELECT * FROM repairform WHERE repairIMEI=:repairIMEI');
