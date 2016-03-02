@@ -4,7 +4,11 @@ require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 
 ini_set('display_errors', 1);  error_reporting(E_ALL);
-session_start();
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
+
 class Database
 {
     protected $host = 'localhost';
@@ -73,12 +77,12 @@ class Database
             if ($count == 0) {
                 $stmt = $this->dbh->prepare('INSERT INTO users(username,password,useremail,joiningdate) VALUES(:username, :password, :email, :jdate)');
                 $stmt->bindParam(':username', $username);
-                $stmt->bindParam(':password', md5($password));
+                $stmt->bindParam(':password', $password);
                 $stmt->bindParam(':email', $useremail);
                 $stmt->bindParam(':jdate', $joiningdate);
 
                 if ($stmt->execute()) {
-                    echo 'Registeration complete';
+                    echo 'registered';
                 } else {
                     echo 'Error: Could not register';
                 }
@@ -124,6 +128,7 @@ class Database
                   $stmt->bindParam(':customerID', $this->dbh->lastInsertId());
                   if ($stmt->execute()) {
                       $this->sendEmail();
+                      $this->uploadImage();
 
 
                       return 'Repair submitted';
@@ -205,19 +210,24 @@ class Database
 	$filepath = "images/".$filename;
 
 
+
     move_uploaded_file($filetmp,$filepath);
     $stmt = $this->dbh->prepare('INSERT INTO image(imageName,imagePath,imageType) VALUES(:imageName, :imagePath, :imageType)');
     $stmt->bindParam(':imageName', $filename);
     $stmt->bindParam(':imagePath', $filepath);
     $stmt->bindParam(':imageType', $filetype);
     $result = $stmt->execute();
-    
+
+    if ($stmt->execute()) {
+        $stmt->bindParam(':imgID', $this->dbh->lastInsertId());
+
+
 
 
 
 }
 
-
+}
     }
 
 }

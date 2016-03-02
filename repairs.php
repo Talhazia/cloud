@@ -1,11 +1,18 @@
 <?php
+ini_set('display_errors', 1);  error_reporting(E_ALL);
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
 require_once 'scripts/database.php';
+require_once 'fb-callback.php';
 
 $db = new Database();
 $db->connectToDB();
+$fb = new Facebook\Facebook();
 $message = '';
 
-if ($db->checkLoginStatus() == false) {
+if (($db->checkLoginStatus() == false) && ($fb->isfbLoggedIn() == false)) {
     header('Location: login.php');
 }
 if ($_POST) {
@@ -99,14 +106,13 @@ if ($_POST) {
 
            <div class="form-group">
 
-             <?php echo'
+
              <div class="form-group">
-               <form action="" method="post" enctype="multipart/form-data">
+                <form action="<?php $db->uploadImage(); ?>" method="post" enctype="multipart/form-data">
                  <input type="file" name="file_img" class="btn btn-default"> </br>
-                 <input type="submit" name="btn_upload" value="Upload" class="btn btn-default">
-               </form>'
-               ?>
-               <?php $db->uploadImage(); ?>
+                 </form>
+
+
 
 
             <hr>

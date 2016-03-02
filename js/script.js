@@ -72,7 +72,9 @@ $('document').ready(function()
         {
 
          $("#btn-submit").html('<img src="btn-ajax-loader.gif" /> &nbsp; Signing Up ...');
-         setTimeout('$(".form-signin").fadeOut(500, function(){ $(".signin-form").load("success.php"); }); ',5000);
+         setTimeout(function() {
+           window.location.href = "login.php";
+         }, 2000);
 
         }
         else{
@@ -81,7 +83,7 @@ $('document').ready(function()
 
       $("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');
 
-         $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Create Account');
+         $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; `Create` Account');
 
          });
 

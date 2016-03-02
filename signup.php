@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Registration Form for CelTel Wireless</title>
@@ -41,6 +41,8 @@
             <button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
       <span class="glyphicon glyphicon-log-in"></span> &nbsp; Create Account
    </button>
+
+      
         </div>
 
  </form>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('scripts/database.php');
 
 $db = new Database();

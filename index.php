@@ -1,18 +1,3 @@
-<?php
-session_start();
-require_once('scripts/database.php');
-
-$db = new Database();
-$db->connectToDB();
-
-if($_POST)
-{
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $db->createSession($username, $password);
-}
- ?>
-
 
 <!DOCTYPE html>
 
@@ -24,34 +9,33 @@ if($_POST)
     <script type="text/javascript" src="js/validation.min.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
     <script type="text/javascript" src="js/script.js"></script>
+    <style>
+    div {
+        border: 2px solid;
+        padding: 10px;
+        width: 150px;
+        resize: auto;
+        overflow:auto;
+        text-align: center;
+        margin: auto;
+
+    }
+    </style>
 </head>
 
 <body>
 
     <form class="form-login" method="post" id="login-form">
 
-        <h2 class="form-signin-heading">Enter Login Information</h2>
+        <h2 class="form-signin-heading">SIGN UP OR LOG IN TO BEGIN</h2>
         <hr />
 
-        <div id="error">
-                <?php echo isset($message) ? $message : null; ?>
-        </div>
 
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" name="username" id="user_name" />
-        </div>
+        <div><input type="button" class="btn btn-default" name="button" onclick="parent.location='login.php'" value="Login" ></div></br>
 
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="password" id="pass_word" />
-        </div>
+        <div><input type="button" class="btn btn-default" name="button" onclick="parent.location='signup.php'" value="Signup"  ></div>
 
-        <hr />
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-default" name="btn-login" id="btn-login">
-                <span class="glyphicon glyphicon-log-in"></span> &nbsp; Login
-            </button>
-        </div>
 
     </form>
     </div>
