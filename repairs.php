@@ -12,7 +12,7 @@ $db->connectToDB();
 $fb = new Facebook\Facebook();
 $message = '';
 
-if (($db->checkLoginStatus() == false) && ($fb->isfbLoggedIn() == false)) {
+if (($db->checkLoginStatus() == false)) {
     header('Location: login.php');
 }
 if ($_POST) {
