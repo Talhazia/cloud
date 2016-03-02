@@ -15,7 +15,7 @@ $fb = new Facebook\Facebook([
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('http://ec2-52-36-33-133.us-west-2.compute.amazonaws.com/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('http://cctalha.dev/project/fb-callback.php', $permissions);
 
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
  ?>

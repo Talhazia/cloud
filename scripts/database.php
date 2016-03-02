@@ -21,7 +21,7 @@ class Database
 
     public function checkLoginStatus()
     {
-        if (isset($_SESSION['username'])) {
+        if (isset($_SESSION['username']) ) {
             $this->isLoggedIn = true;
         } else {
             $this->isLoggedIn = false;
