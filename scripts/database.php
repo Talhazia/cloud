@@ -126,7 +126,7 @@ class Database
                 return "Error: Could not submit";
               }*/
               if ($stmt1->execute()) {
-                  $stmt->bindParam(':customerID', $this->dbh->lastInsertId());
+                  $stmt->bindParam(':customerID', $this->dbh->lastInsertId(), PDO::PARAM_STR);
                   if ($stmt->execute()) {
                       $this->sendEmail();
                       $this->uploadImage();
