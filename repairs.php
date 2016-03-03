@@ -56,7 +56,7 @@ if ($_POST) {
          </div>
 
          <div class="form-group">
-             <input type="text" class="form-control" placeholder="Phome Model" name="repairmodel" id="repairmodel" />
+             <input type="text" class="form-control" placeholder="Phone Model" name="repairmodel" id="repairmodel" />
          </div>
 
          <div class="form-group">
@@ -68,7 +68,7 @@ if ($_POST) {
          </div>
 
          <div class="form-group">
-             <input type="text" class="form-control" placeholder="Cutomer Name" name="cusname" id="cusname" />
+             <input type="text" class="form-control" placeholder="Customer Name" name="cusname" id="cusname" />
 
             <!--<select class="" name="cusid">
                <?php
@@ -116,6 +116,9 @@ if ($_POST) {
               <hr>
 
               <input type="button" value="Logout" class="btn btn-default" id="btn-submit1" onClick="document.location.href='logout.php'" />
+              <hr>
+              <p2>Need something Translated?</p2><br>
+              <input type="button" value="Translate" class="btn btn-default" id="btn-submit1" onClick="document.location.href='googletranslate.php'" />
 
      </form>
      </div>
