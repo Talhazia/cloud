@@ -112,7 +112,6 @@ class Database
                 $stmt->bindParam(':repairIMEI', $repairIMEI);
                 $stmt->bindParam(':repairdate', $repairdate);
                 $stmt->bindParam(':repairloc', $repairloc);
-                $stmt->bindParam(':customerID', $customerID);
                 $stmt1->bindParam(':cusname', $cusname);
                 $stmt1->bindParam(':cusphone', $cusphone);
                 $stmt1->bindParam(':cusemail', $cusemail);
@@ -188,7 +187,7 @@ class Database
           # Now, compose and send your message.
           $result = $mg->sendMessage($domain, array('from' => 'talha.zia@uoit.net',
                                           'to' => ($_POST['cusemail']),
-                                          'subject' => 'The PHP SDK is awesome!',
+                                          'subject' => 'Your repair has been submitted',
                                           'text' => 'Thank you for choosing us '.$_POST['cusname'].'. Your '.$_POST['repairbrand'].' '.$_POST['repairmodel'].' has IMEI '.$_POST['repairIMEI'].', Your repair technician is: '.$_POST['repairtech'].' and your repair was submitted at: '.$time->format('h:i:s'), ));
 
         $httpResponseCode = $result->http_response_code;
